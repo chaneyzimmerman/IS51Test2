@@ -36,7 +36,6 @@ export class TestScoreComponent implements OnInit {
   async ngOnInit() {
 
     this.tests = await this.loadTestsFromJson();
-    console.log('this.tests from ngOnInit...', this.tests);
     const tests = JSON.parse(localStorage.getItem('tests'));
     if(tests && tests.length > 0) {
       this.tests=tests;
@@ -44,6 +43,18 @@ export class TestScoreComponent implements OnInit {
       this.tests = await this.loadTestsFromJson();
     }
 
+  }
+
+  async loadTests() {
+    let tests = JSON.parse(localStorage.getItem('tests'))
+    if (tests && tests.length > 0) {
+      // tests = tests;
+    } else {
+      tests = await this.loadTestsFromJson();
+      console.log('this.tests from ngOnInit...', this.tests);
+      this.tests = tests;
+      return tests;
+    }
   }
 
   async loadTestsFromJson() {
@@ -68,12 +79,12 @@ export class TestScoreComponent implements OnInit {
     this.saveToLocalStorage();
   }
 
-  DeleteContact(index: number) {
+  deleteTest(index: number) {
     this.tests.splice(index, 1);
   }
 
   saveToLocalStorage() {
-    localStorage.setItem('contacts', JSON.stringify(this.tests));
+    localStorage.setItem('tests', JSON.stringify(this.tests));
   }
 
 

@@ -15,8 +15,8 @@ export class MainNavComponent implements OnInit {
   }
 
   showAbout() {
-    
-    this.toastService.showToast('success', 5000, 'This application was created by Chaney Zimmerman (c).')
+
+    this.toastService.showToast('success', 5000, 'This application was created by Chaney Zimmerman (c) 2018.')
   }
 
 }
